@@ -186,10 +186,7 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     database-platform: org.hibernate.dialect.H2Dialect
-    show-sql: true
-    
-
-      
+    show-sql: true  
   security:
     user:
       name: userCeme
