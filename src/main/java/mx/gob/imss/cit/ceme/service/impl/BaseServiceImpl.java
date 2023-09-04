@@ -6,6 +6,7 @@ package mx.gob.imss.cit.ceme.service.impl;
 import java.util.Collections;
 import java.util.List;
 
+import org.mapstruct.factory.Mappers;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -13,8 +14,8 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import mx.gob.imss.cit.ceme.model.entitydto.DelegacionDto;
+import mx.gob.imss.cit.ceme.model.mapper.DelegacionMapper;
 import mx.gob.imss.cit.ceme.model.projection.CatalogoView;
-import mx.gob.imss.cit.ceme.model.record.DelegacionRecord;
 import mx.gob.imss.cit.ceme.persistence.Delegacion;
 import mx.gob.imss.cit.ceme.persistence.repository.DelegacionRepository;
 import mx.gob.imss.cit.ceme.service.BaseService;
@@ -30,16 +31,20 @@ public class BaseServiceImpl implements BaseService {
 
 	// usar DI por constructor
 	private final DelegacionRepository delegacionRepository;
+	
+//	private DelegacionMapper delegacionMapper;
 
 	@Override
 	public ResponseEntity<List<CatalogoView>> getBasePrueba(Integer id) {
 		log.info("inicio getBasePrueba {}", id);
 		List<CatalogoView> catalogosPrueba = Collections.emptyList();
+		List<DelegacionDto> delegacionRecord = null;
 		try {
 			catalogosPrueba = delegacionRepository.findDelegacionView();
 			//prueba Record
-			List<DelegacionRecord> delegacionRecord=delegacionRepository.findByFecBajaNull();
-			//delegacionRecord.forEach(del -> System.err.println(del.desDelegacion()));
+			DelegacionMapper mapper = Mappers.getMapper(DelegacionMapper.class);
+			delegacionRecord= mapper.toLstDtoRec(delegacionRepository.findByFecBajaNull());
+			log.info(delegacionRecord);
 		} catch (Exception e) {
 			log.error("Exception getBasePrueba", e);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

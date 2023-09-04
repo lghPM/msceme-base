@@ -15,6 +15,7 @@ public interface DelegacionRepository extends JpaRepository<Delegacion, Integer>
 
 	@Query("SELECT del.id as id , del.desDelegacion as descripcion FROM Delegacion del WHERE del.fecBaja IS NULL ")
 	List<CatalogoView> findDelegacionView();
-	
+
 	List<DelegacionRecord> findByFecBajaNull();
+
 }
