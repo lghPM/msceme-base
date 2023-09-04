@@ -75,7 +75,7 @@ management:
       mode: full
 token:
   signing:
-    key: 556f8b25b1f524cd7cc044c58beb3cfa7358092afbe33ddba9f668f4e86b04bf
+    key: ${SIGNING_KEY_OAUTH}
 ---
 spring:
   jackson:
