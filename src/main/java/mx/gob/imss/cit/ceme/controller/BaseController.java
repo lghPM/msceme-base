@@ -30,7 +30,7 @@ public class BaseController {
 	// usar DI por constructor
 	private final BaseService baseService;
 
-	// evitar uso de generico  <?> por issue sonar
+	// evitar uso de generico <?> por issue sonar
 	@GetMapping("/hola")
 	public ResponseEntity<List<CatalogoView>> prueba(@RequestParam(required = false) Integer test) {
 		log.info("prueba param{} ", test);
@@ -47,5 +47,11 @@ public class BaseController {
 	public ResponseEntity<List<Delegacion>> pruebaEntidad() {
 		log.info("prueba pruebaEntidad");
 		return baseService.getBasePruebaEntidad();
+	}
+
+	@GetMapping("/hola4")
+	public ResponseEntity<List<DelegacionDto>> pruebaMapStruct() {
+		log.info("prueba MapStruct");
+		return baseService.getBasePruebaMapStruct();
 	}
 }

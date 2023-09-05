@@ -22,4 +22,6 @@ public interface BaseService {
 	ResponseEntity<List<DelegacionDto>> getBasePruebaDto();
 
 	ResponseEntity<List<Delegacion>> getBasePruebaEntidad();
+	
+	ResponseEntity<List<DelegacionDto>> getBasePruebaMapStruct();
 }
