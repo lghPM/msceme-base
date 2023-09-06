@@ -34,6 +34,13 @@ server:
   servlet:
     contextPath: /msceme-base/v1
   port: 8080
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    csrf:
+      enabled: true
+    path: /doc/swagger-ui.html
   
 authorization:
   signingKey: ${SIGNING_KEY_OAUTH}
@@ -113,6 +120,14 @@ server:
   servlet:
     contextPath: /msceme-base/v1
   port: 9091
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    csrf:
+      enabled: true
+    path: /doc/swagger-ui.html
+      
   
 authorization:
   signingKey: algun_codigo_secreto_qwerty_pa_validar_token
@@ -195,6 +210,13 @@ server:
   servlet:
     contextPath: /msceme-base/v1
   port: 9091
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    csrf:
+      enabled: true
+    path: /doc/swagger-ui.html
   
 authorization:
   signingKey: algun_codigo_secreto_qwerty_pa_validar_token
