@@ -11,7 +11,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
-import io.swagger.v3.oas.models.info.License;
 import jakarta.annotation.PostConstruct;
 
 @SpringBootApplication
@@ -44,10 +43,8 @@ public class MscemeBaseApplication {
 	}
 
 	@Bean
-	public OpenAPI customOpenAPI() {
-		return new OpenAPI().info(new Info().title("CEME Spring Boot 3 API -------").version("0.11")
-				.description("Demo de WS").termsOfService("http://swagger.io/terms/")
-				.license(new License().name("Apache 2.0").url("http://springdoc.org")));
-
+	OpenAPI customOpenAPI() {
+		return new OpenAPI().info(new Info().title("Central de Mezclas").version("0.10")
+				.description("WS Base para Cental de Mezclas"));
 	}
 }
