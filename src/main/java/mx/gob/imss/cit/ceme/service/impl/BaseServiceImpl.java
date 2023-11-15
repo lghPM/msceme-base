@@ -12,12 +12,12 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import mx.gob.imss.cit.ceme.model.entitydto.DelegacionDto;
+import mx.gob.imss.cit.ceme.model.entitydto.CemecDelegacionDto;
 import mx.gob.imss.cit.ceme.model.mapper.DelegacionMapper;
 import mx.gob.imss.cit.ceme.model.projection.CatalogoView;
-import mx.gob.imss.cit.ceme.model.record.DelegacionRecord;
-import mx.gob.imss.cit.ceme.persistence.Delegacion;
-import mx.gob.imss.cit.ceme.persistence.repository.DelegacionRepository;
+import mx.gob.imss.cit.ceme.model.record.CemecDelegacionRecord;
+import mx.gob.imss.cit.ceme.persistence.CemecDelegacion;
+import mx.gob.imss.cit.ceme.persistence.repository.CemecDelegacionRepository;
 import mx.gob.imss.cit.ceme.service.BaseService;
 import mx.gob.imss.cit.ceme.util.ObjectMapperUtils;
 
@@ -30,7 +30,7 @@ import mx.gob.imss.cit.ceme.util.ObjectMapperUtils;
 public class BaseServiceImpl implements BaseService {
 
 	// usar DI por constructor
-	private final DelegacionRepository delegacionRepository;
+	private final CemecDelegacionRepository delegacionRepository;
 	private final DelegacionMapper delegacionMapper;
 
 	@Override
@@ -40,8 +40,8 @@ public class BaseServiceImpl implements BaseService {
 		try {
 			catalogosPrueba = delegacionRepository.findDelegacionView();
 			//prueba Record
-			List<DelegacionRecord> delegacionRecord=delegacionRepository.findByFecBajaNull();
-			//delegacionRecord.forEach(del -> System.err.println(del.desDelegacion()));
+			List<CemecDelegacionRecord> delegacionRecord=delegacionRepository.findByStpAltaNull();
+			delegacionRecord.forEach(del -> System.err.println(del.desDelegacion()));
 		} catch (Exception e) {
 			log.error("Exception getBasePrueba", e);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -50,13 +50,13 @@ public class BaseServiceImpl implements BaseService {
 	}
 
 	@Override
-	public ResponseEntity<List<DelegacionDto>> getBasePruebaDto() {
+	public ResponseEntity<List<CemecDelegacionDto>> getBasePruebaDto() {
 		log.info("inicio getBasePruebaDto");
-		List<DelegacionDto> delegacionDtos = Collections.emptyList();
-		List<Delegacion> delegacion = Collections.emptyList();
+		List<CemecDelegacionDto> delegacionDtos = Collections.emptyList();
+		List<CemecDelegacion> delegacion = Collections.emptyList();
 		try {
 			delegacion = delegacionRepository.findAll();
-			delegacionDtos = ObjectMapperUtils.mapAll(delegacion, DelegacionDto.class);
+			delegacionDtos = ObjectMapperUtils.mapAll(delegacion, CemecDelegacionDto.class);
 		} catch (Exception e) {
 			log.error("Exception getBasePruebaDto", e);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -65,9 +65,9 @@ public class BaseServiceImpl implements BaseService {
 	}
 
 	@Override
-	public ResponseEntity<List<Delegacion>> getBasePruebaEntidad() {
+	public ResponseEntity<List<CemecDelegacion>> getBasePruebaEntidad() {
 		log.info("inicio getBasePruebaEntidad");
-		List<Delegacion> delegacion = Collections.emptyList();
+		List<CemecDelegacion> delegacion = Collections.emptyList();
 		try {
 			delegacion = delegacionRepository.findAll();
 		} catch (Exception e) {
@@ -78,10 +78,10 @@ public class BaseServiceImpl implements BaseService {
 	}
 
 	@Override
-	public ResponseEntity<List<DelegacionDto>> getBasePruebaMapStruct() {
+	public ResponseEntity<List<CemecDelegacionDto>> getBasePruebaMapStruct() {
 		log.info("inicio getBasePruebaMapStruct");
-		List<DelegacionDto> delegacionDtos = Collections.emptyList();
-		List<Delegacion> delegacion = Collections.emptyList();
+		List<CemecDelegacionDto> delegacionDtos = Collections.emptyList();
+		List<CemecDelegacion> delegacion = Collections.emptyList();
 		try {
 			delegacion = delegacionRepository.findAll();
 			delegacionDtos =delegacionMapper.toLstDto(delegacion);

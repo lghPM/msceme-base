@@ -96,9 +96,9 @@ spring:
       on-profile:
        local
   datasource:
-    url: jdbc:mariadb://10.100.8.166:3306/MJLSSCBDQA01?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-    username: MJLSSCBD_USER
-    password: MJLSSCB_U534
+    url: jdbc:mariadb://10.250.8.137:3306/CTMZ_SBD_QA?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: CTMZQA_USER
+    password: CtM2QA#U53R
     driverClassName: org.mariadb.jdbc.Driver
   jpa:
     properties:

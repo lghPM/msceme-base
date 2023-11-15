@@ -6,8 +6,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
 
-import mx.gob.imss.cit.ceme.model.entitydto.DelegacionDto;
-import mx.gob.imss.cit.ceme.persistence.Delegacion;
+import mx.gob.imss.cit.ceme.model.entitydto.CemecDelegacionDto;
+import mx.gob.imss.cit.ceme.persistence.CemecDelegacion;
 
 @Component
 @Mapper(componentModel = "spring")
@@ -15,16 +15,16 @@ public interface DelegacionMapper {
 
 	DelegacionMapper INSTANCE = Mappers.getMapper(DelegacionMapper.class);
 
-	Delegacion toEntity(DelegacionDto dto);
+	CemecDelegacion toEntity(CemecDelegacionDto dto);
 
-	DelegacionDto toDto(Delegacion entity);
+	CemecDelegacionDto toDto(CemecDelegacion entity);
 
-	List<DelegacionDto> toLstDto(List<Delegacion> entity);
+	List<CemecDelegacionDto> toLstDto(List<CemecDelegacion> entity);
 
 //	@Mapping(target = "id", source = "id")
 //	@Mapping(target = "desDelegacion", source = "desDelegacion")
-//	List<DelegacionDto> toLstDtoRec(List<DelegacionRecord> entity);
+//	List<CemecDelegacionDto> toLstDtoRec(List<DelegacionRecord> entity);
 
-	List<Delegacion> toLstEntity(List<DelegacionDto> dto);
+	List<CemecDelegacion> toLstEntity(List<CemecDelegacionDto> dto);
 
 }

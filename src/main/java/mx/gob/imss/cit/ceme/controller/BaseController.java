@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import mx.gob.imss.cit.ceme.model.entitydto.DelegacionDto;
+import mx.gob.imss.cit.ceme.model.entitydto.CemecDelegacionDto;
 import mx.gob.imss.cit.ceme.model.projection.CatalogoView;
-import mx.gob.imss.cit.ceme.persistence.Delegacion;
+import mx.gob.imss.cit.ceme.persistence.CemecDelegacion;
 import mx.gob.imss.cit.ceme.service.BaseService;
 
 /**
@@ -38,19 +38,19 @@ public class BaseController {
 	}
 
 	@GetMapping("/hola2")
-	public ResponseEntity<List<DelegacionDto>> pruebaDto() {
+	public ResponseEntity<List<CemecDelegacionDto>> pruebaDto() {
 		log.info("prueba pruebaDto");
 		return baseService.getBasePruebaDto();
 	}
 
 	@GetMapping("/hola3")
-	public ResponseEntity<List<Delegacion>> pruebaEntidad() {
+	public ResponseEntity<List<CemecDelegacion>> pruebaEntidad() {
 		log.info("prueba pruebaEntidad");
 		return baseService.getBasePruebaEntidad();
 	}
 
 	@GetMapping("/hola4")
-	public ResponseEntity<List<DelegacionDto>> pruebaMapStruct() {
+	public ResponseEntity<List<CemecDelegacionDto>> pruebaMapStruct() {
 		log.info("prueba MapStruct");
 		return baseService.getBasePruebaMapStruct();
 	}
