@@ -1,33 +1,88 @@
 package mx.gob.imss.cit.ceme.persistence;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.Date;
 
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "CEMEC_SERVICIO_ESPECIALIDAD")
 public class CemecServicioEspecialidad implements Serializable {
-    private static final long serialVersionUID = 9041471603233415439L;
+    private static final long serialVersionUID = 5531993510438256062L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_SERVICIO_ESPECIALIDAD", nullable = false)
     private Integer id;
 
-    @Column(name = "DES_SERVICIO_ESPECIALIDAD", length = 100)
-    private String desServicioEspecialidad;
-
     @Column(name = "CVE_SERVICIO_ESPECIALIDAD", length = 5)
     private String cveServicioEspecialidad;
 
+    @Column(name = "DES_SERVICIO_ESPECIALIDAD", length = 100)
+    private String desServicioEspecialidad;
+
     @Column(name = "CVE_RAMA_MEDICINA_TRONCAL")
-    private Byte cveRamaMedicinaTroncal;
+    private Integer cveRamaMedicinaTroncal;
+
+    @Column(name = "CVE_UBICACION")
+    private Integer cveUbicacion;
+
+    @Column(name = "IND_INTERV_QUIRURGICA")
+    private Boolean indIntervQuirurgica;
+
+    @Column(name = "IND_SEXO_PERMITIDO")
+    private Boolean indSexoPermitido;
+
+    @Column(name = "NUM_EDAD_MIN_ANIO")
+    private Short numEdadMinAnio;
+
+    @Column(name = "NUM_EDAD_MIN_SEMANA")
+    private Short numEdadMinSemana;
+
+    @Column(name = "NUM_EDAD_MAX_ANIO")
+    private Short numEdadMaxAnio;
+
+    @Column(name = "NUM_EDAD_MAX_SEMANA")
+    private Short numEdadMaxSemana;
 
     @Column(name = "IND_MARCA_PEDIATRIA")
     private Boolean indMarcaPediatria;
 
+    @Column(name = "CVE_AREA_RESPONSABLE", length = 2)
+    private String cveAreaResponsable;
+
+    @Column(name = "CVE_SIMO_SIAIS_DMEM", length = 2)
+    private String cveSimoSiaisDmem;
+
+    @Column(name = "CVE_SUB_ESPECIALIDAD", length = 2)
+    private String cveSubEspecialidad;
+
+    @Column(name = "IND_MOV_INTRAHOSPITALARIO")
+    private Boolean indMovIntrahospitalario;
+
+    @Column(name = "IND_INTERCONSULTAS")
+    private Boolean indInterconsultas;
+
+    @Column(name = "CVE_CATEGORIA")
+    private Boolean cveCategoria;
+
     @Column(name = "IND_VIGENCIA")
     private Boolean indVigencia;
+
+    @Column(name = "IND_PRIMER_NIVEL")
+    private Boolean indPrimerNivel;
+
+    @Column(name = "IND_SEGUNDO_NIVEL")
+    private Boolean indSegundoNivel;
+
+    @Column(name = "IND_TERCER_NIVEL")
+    private Boolean indTercerNivel;
 
     @Column(name = "REF_TIPO_MOVIMIENTO", length = 50)
     private String refTipoMovimiento;
@@ -35,16 +90,7 @@ public class CemecServicioEspecialidad implements Serializable {
     @Column(name = "REF_MODIFICACION", length = 20)
     private String refModificacion;
 
-    @Column(name = "IND_QUMIOTERAPIA")
-    private Boolean indQumioterapia;
-
-    @Column(name = "IND_NPT")
-    private Boolean indNpt;
-
-    @Column(name = "IND_ANTIBIOTICO")
-    private Boolean indAntibiotico;
-
-    @Column(name = "IND_ACTIVO")
+    @Column(name = "IND_ACTIVO",columnDefinition="tinyint(1) default 1")
     private Boolean indActivo;
 
     @Column(name = "CVE_USUARIO_ALTA", nullable = false, length = 60)
@@ -55,159 +101,13 @@ public class CemecServicioEspecialidad implements Serializable {
 
     @Column(name = "CVE_USUARIO_MODIFICA", length = 60)
     private String cveUsuarioModifica;
-    
-	@Column(name = "STP_ALTA", nullable = false)
-	private Date stpAlta;
-	
-	@Column(name = "STP_MODIFICA")
-	private Date stpModifica;
-	
-	@Column(name = "STP_BAJA")
-	private Date stpBaja;
 
-    public Integer getId() {
-        return id;
-    }
+    @Column(name = "STP_ALTA", columnDefinition = "timestamp(6) not null")
+    private Date stpAlta;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    @Column(name = "STP_BAJA", columnDefinition = "timestamp(6)")
+    private Date stpBaja;
 
-    public String getDesServicioEspecialidad() {
-        return desServicioEspecialidad;
-    }
-
-    public void setDesServicioEspecialidad(String desServicioEspecialidad) {
-        this.desServicioEspecialidad = desServicioEspecialidad;
-    }
-
-    public String getCveServicioEspecialidad() {
-        return cveServicioEspecialidad;
-    }
-
-    public void setCveServicioEspecialidad(String cveServicioEspecialidad) {
-        this.cveServicioEspecialidad = cveServicioEspecialidad;
-    }
-
-    public Byte getCveRamaMedicinaTroncal() {
-        return cveRamaMedicinaTroncal;
-    }
-
-    public void setCveRamaMedicinaTroncal(Byte cveRamaMedicinaTroncal) {
-        this.cveRamaMedicinaTroncal = cveRamaMedicinaTroncal;
-    }
-
-    public Boolean getIndMarcaPediatria() {
-        return indMarcaPediatria;
-    }
-
-    public void setIndMarcaPediatria(Boolean indMarcaPediatria) {
-        this.indMarcaPediatria = indMarcaPediatria;
-    }
-
-    public Boolean getIndVigencia() {
-        return indVigencia;
-    }
-
-    public void setIndVigencia(Boolean indVigencia) {
-        this.indVigencia = indVigencia;
-    }
-
-    public String getRefTipoMovimiento() {
-        return refTipoMovimiento;
-    }
-
-    public void setRefTipoMovimiento(String refTipoMovimiento) {
-        this.refTipoMovimiento = refTipoMovimiento;
-    }
-
-    public String getRefModificacion() {
-        return refModificacion;
-    }
-
-    public void setRefModificacion(String refModificacion) {
-        this.refModificacion = refModificacion;
-    }
-
-    public Boolean getIndQumioterapia() {
-        return indQumioterapia;
-    }
-
-    public void setIndQumioterapia(Boolean indQumioterapia) {
-        this.indQumioterapia = indQumioterapia;
-    }
-
-    public Boolean getIndNpt() {
-        return indNpt;
-    }
-
-    public void setIndNpt(Boolean indNpt) {
-        this.indNpt = indNpt;
-    }
-
-    public Boolean getIndAntibiotico() {
-        return indAntibiotico;
-    }
-
-    public void setIndAntibiotico(Boolean indAntibiotico) {
-        this.indAntibiotico = indAntibiotico;
-    }
-
-    public Boolean getIndActivo() {
-        return indActivo;
-    }
-
-    public void setIndActivo(Boolean indActivo) {
-        this.indActivo = indActivo;
-    }
-
-    public String getCveUsuarioAlta() {
-        return cveUsuarioAlta;
-    }
-
-    public void setCveUsuarioAlta(String cveUsuarioAlta) {
-        this.cveUsuarioAlta = cveUsuarioAlta;
-    }
-
-    public String getCveUsuarioBaja() {
-        return cveUsuarioBaja;
-    }
-
-    public void setCveUsuarioBaja(String cveUsuarioBaja) {
-        this.cveUsuarioBaja = cveUsuarioBaja;
-    }
-
-    public String getCveUsuarioModifica() {
-        return cveUsuarioModifica;
-    }
-
-    public void setCveUsuarioModifica(String cveUsuarioModifica) {
-        this.cveUsuarioModifica = cveUsuarioModifica;
-    }
-
-	public Date getStpAlta() {
-		return stpAlta;
-	}
-
-	public void setStpAlta(Date stpAlta) {
-		this.stpAlta = stpAlta;
-	}
-
-	public Date getStpModifica() {
-		return stpModifica;
-	}
-
-	public void setStpModifica(Date stpModifica) {
-		this.stpModifica = stpModifica;
-	}
-
-	public Date getStpBaja() {
-		return stpBaja;
-	}
-
-	public void setStpBaja(Date stpBaja) {
-		this.stpBaja = stpBaja;
-	}
-
-
+    @Column(name = "STP_MODIFICA", columnDefinition = "timestamp(6)")
+    private Date stpModifica;
 }

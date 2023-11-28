@@ -13,22 +13,32 @@ import java.util.Date;
 @Setter
 @ToString
 @Entity
-@Table(name = "CEMEC_DELEGACION")
-public class CemecDelegacion implements Serializable {
-    private static final long serialVersionUID = -3085207890228877884L;
+@Table(name = "CEMET_PERSONA")
+public class CemetPersona implements Serializable {
+    private static final long serialVersionUID = -3853526848173718608L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_DELEGACION", nullable = false)
+    @Column(name = "ID_PERSONA", nullable = false)
     private Integer id;
 
-    @Column(name = "DES_DELEGACION", nullable = false, length = 100)
-    private String desDelegacion;
+    @Column(name = "NOM_NOMBRE", nullable = false, length = 50)
+    private String nomNombre;
 
-    @Column(name = "REF_ABREVIACION", length = 3)
-    private String refAbreviacion;
+    @Column(name = "NOM_PATERNO", nullable = false, length = 50)
+    private String nomPaterno;
 
-    @Column(name = "CVE_PRESUPUESTO_DELEGACION")
-    private Integer cvePresupuestoDelegacion;
+    @Column(name = "NOM_MATERNO", length = 50)
+    private String nomMaterno;
+
+    @Column(name = "REF_EMAIL", length = 150)
+    private String refEmail;
+
+    @Column(name = "REF_MATRICULA", length = 10)
+    private String refMatricula;
+
+    @Column(name = "REF_LLAVE", length = 256)
+    private String refLlave;
 
     @Column(name = "IND_ACTIVO")
     private Boolean indActivo;
@@ -50,5 +60,4 @@ public class CemecDelegacion implements Serializable {
 
     @Column(name = "STP_MODIFICA", columnDefinition = "timestamp(6)")
     private Date stpModifica;
-
 }

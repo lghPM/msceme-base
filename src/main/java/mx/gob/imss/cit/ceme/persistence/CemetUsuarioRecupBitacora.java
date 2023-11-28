@@ -13,34 +13,38 @@ import java.util.Date;
 @Setter
 @ToString
 @Entity
-@Table(name = "CEMEC_DELEGACION")
-public class CemecDelegacion implements Serializable {
-    private static final long serialVersionUID = -3085207890228877884L;
+@Table(name = "CEMET_USUARIO_RECUP_BITACORA")
+public class CemetUsuarioRecupBitacora implements Serializable {
+    private static final long serialVersionUID = 8335609914761310745L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_DELEGACION", nullable = false)
+    @Column(name = "ID_USUARIO_RECUP_BITACORA", nullable = false)
     private Integer id;
 
-    @Column(name = "DES_DELEGACION", nullable = false, length = 100)
-    private String desDelegacion;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ID_PERSONA", nullable = false)
+    @ToString.Exclude
+    private CemetPersona idPersona;
 
-    @Column(name = "REF_ABREVIACION", length = 3)
-    private String refAbreviacion;
-
-    @Column(name = "CVE_PRESUPUESTO_DELEGACION")
-    private Integer cvePresupuestoDelegacion;
-
-    @Column(name = "IND_ACTIVO")
-    private Boolean indActivo;
+    @Column(name = "REF_TOKEN", length = 256)
+    private String refToken;
 
     @Column(name = "CVE_USUARIO_ALTA", nullable = false, length = 60)
     private String cveUsuarioAlta;
 
+    @Column(name = "IND_ACTIVO")
+    private Boolean indActivo;
     @Column(name = "CVE_USUARIO_BAJA", length = 60)
     private String cveUsuarioBaja;
 
     @Column(name = "CVE_USUARIO_MODIFICA", length = 60)
     private String cveUsuarioModifica;
+
+    @Column(name = "STP_EXPEDICION", columnDefinition = "timestamp(6)")
+    private Date stpExpedicion;
+
+    @Column(name = "STP_CADUCIDAD", columnDefinition = "timestamp(6)")
+    private Date stpCaducidad;
 
     @Column(name = "STP_ALTA", columnDefinition = "timestamp(6) not null")
     private Date stpAlta;

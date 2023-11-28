@@ -1,36 +1,36 @@
 package mx.gob.imss.cit.ceme.persistence;
 
+import jakarta.persistence.*;
+import lombok.*;
+
 import java.io.Serializable;
 import java.util.Date;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "CEMEC_MEDICAMENTO")
 public class CemecMedicamento implements Serializable {
-    private static final long serialVersionUID = 754088391754540172L;
+    private static final long serialVersionUID = -516401201656970273L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_MEDICAMENTO", nullable = false)
     private Integer id;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "ID_TIPO_MEZCLA", nullable = false)
-    private CemecTipoMezcla idTipoMezcla;
 
     @Column(name = "DES_CORTA_MEDICAMENTO", length = 100)
     private String desCortaMedicamento;
 
     @Column(name = "DES_LARGA_MEDICAMENTO", nullable = false, length = 2000)
     private String desLargaMedicamento;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ID_TIPO_MEZCLA", nullable = false)
+    @ToString.Exclude
+    private CemecTipoMezcla idTipoMezcla;
 
     @Column(name = "CVE_MEDICAMENTO", length = 15)
     private String cveMedicamento;
@@ -76,191 +76,15 @@ public class CemecMedicamento implements Serializable {
 
     @Column(name = "CVE_USUARIO_MODIFICA", length = 60)
     private String cveUsuarioModifica;
-    
-	@Column(name = "STP_ALTA", nullable = false)
-	private Date stpAlta;
 
-	@Column(name = "STP_MODIFICA")
-	private Date stpModifica;
+    @Column(name = "STP_ALTA", columnDefinition = "timestamp(6) not null")
+    private Date stpAlta;
 
-	@Column(name = "STP_BAJA")
-	private Date stpBaja;
+    @Column(name = "STP_BAJA", columnDefinition = "timestamp(6)")
+    private Date stpBaja;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public CemecTipoMezcla getIdTipoMezcla() {
-        return idTipoMezcla;
-    }
-
-    public void setIdTipoMezcla(CemecTipoMezcla idTipoMezcla) {
-        this.idTipoMezcla = idTipoMezcla;
-    }
-
-    public String getDesCortaMedicamento() {
-        return desCortaMedicamento;
-    }
-
-    public void setDesCortaMedicamento(String desCortaMedicamento) {
-        this.desCortaMedicamento = desCortaMedicamento;
-    }
-
-    public String getDesLargaMedicamento() {
-        return desLargaMedicamento;
-    }
-
-    public void setDesLargaMedicamento(String desLargaMedicamento) {
-        this.desLargaMedicamento = desLargaMedicamento;
-    }
-
-    public String getCveMedicamento() {
-        return cveMedicamento;
-    }
-
-    public void setCveMedicamento(String cveMedicamento) {
-        this.cveMedicamento = cveMedicamento;
-    }
-
-    public String getCvePartidaPresupuestal() {
-        return cvePartidaPresupuestal;
-    }
-
-    public void setCvePartidaPresupuestal(String cvePartidaPresupuestal) {
-        this.cvePartidaPresupuestal = cvePartidaPresupuestal;
-    }
-
-    public String getCveDescGpo() {
-        return cveDescGpo;
-    }
-
-    public void setCveDescGpo(String cveDescGpo) {
-        this.cveDescGpo = cveDescGpo;
-    }
-
-    public String getCveDescGen() {
-        return cveDescGen;
-    }
-
-    public void setCveDescGen(String cveDescGen) {
-        this.cveDescGen = cveDescGen;
-    }
-
-    public String getCveDescEsp() {
-        return cveDescEsp;
-    }
-
-    public void setCveDescEsp(String cveDescEsp) {
-        this.cveDescEsp = cveDescEsp;
-    }
-
-    public String getCveDescDif() {
-        return cveDescDif;
-    }
-
-    public void setCveDescDif(String cveDescDif) {
-        this.cveDescDif = cveDescDif;
-    }
-
-    public String getCveDescVar() {
-        return cveDescVar;
-    }
-
-    public void setCveDescVar(String cveDescVar) {
-        this.cveDescVar = cveDescVar;
-    }
-
-    public String getRefPresentacion() {
-        return refPresentacion;
-    }
-
-    public void setRefPresentacion(String refPresentacion) {
-        this.refPresentacion = refPresentacion;
-    }
-
-    public Byte getNumPiezasPresentacion() {
-        return numPiezasPresentacion;
-    }
-
-    public void setNumPiezasPresentacion(Byte numPiezasPresentacion) {
-        this.numPiezasPresentacion = numPiezasPresentacion;
-    }
-
-    public String getRefUnidadMinMedida() {
-        return refUnidadMinMedida;
-    }
-
-    public void setRefUnidadMinMedida(String refUnidadMinMedida) {
-        this.refUnidadMinMedida = refUnidadMinMedida;
-    }
-
-    public Short getNumUnidadMinMedidaPieza() {
-        return numUnidadMinMedidaPieza;
-    }
-
-    public void setNumUnidadMinMedidaPieza(Short numUnidadMinMedidaPieza) {
-        this.numUnidadMinMedidaPieza = numUnidadMinMedidaPieza;
-    }
-
-    public Boolean getIndActivo() {
-        return indActivo;
-    }
-
-    public void setIndActivo(Boolean indActivo) {
-        this.indActivo = indActivo;
-    }
-
-    public String getCveUsuarioAlta() {
-        return cveUsuarioAlta;
-    }
-
-    public void setCveUsuarioAlta(String cveUsuarioAlta) {
-        this.cveUsuarioAlta = cveUsuarioAlta;
-    }
-
-    public String getCveUsuarioBaja() {
-        return cveUsuarioBaja;
-    }
-
-    public void setCveUsuarioBaja(String cveUsuarioBaja) {
-        this.cveUsuarioBaja = cveUsuarioBaja;
-    }
-
-    public String getCveUsuarioModifica() {
-        return cveUsuarioModifica;
-    }
-
-    public void setCveUsuarioModifica(String cveUsuarioModifica) {
-        this.cveUsuarioModifica = cveUsuarioModifica;
-    }
-
-	public Date getStpAlta() {
-		return stpAlta;
-	}
-
-	public void setStpAlta(Date stpAlta) {
-		this.stpAlta = stpAlta;
-	}
-
-	public Date getStpModifica() {
-		return stpModifica;
-	}
-
-	public void setStpModifica(Date stpModifica) {
-		this.stpModifica = stpModifica;
-	}
-
-	public Date getStpBaja() {
-		return stpBaja;
-	}
-
-	public void setStpBaja(Date stpBaja) {
-		this.stpBaja = stpBaja;
-	}
+    @Column(name = "STP_MODIFICA", columnDefinition = "timestamp(6)")
+    private Date stpModifica;
 
 
 }

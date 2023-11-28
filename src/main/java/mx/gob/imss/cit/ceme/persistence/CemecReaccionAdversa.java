@@ -1,14 +1,21 @@
 package mx.gob.imss.cit.ceme.persistence;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.Date;
 
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "CEMEC_REACCION_ADVERSA")
 public class CemecReaccionAdversa implements Serializable {
-    private static final long serialVersionUID = -5979667726042352139L;
+    private static final long serialVersionUID = 671744531946846614L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_REACCION_ADVERSA", nullable = false)
@@ -37,76 +44,4 @@ public class CemecReaccionAdversa implements Serializable {
 
     @Column(name = "STP_MODIFICA", columnDefinition = "timestamp(6)")
     private Date stpModifica;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getDesReaccionAdversa() {
-        return desReaccionAdversa;
-    }
-
-    public void setDesReaccionAdversa(String desReaccionAdversa) {
-        this.desReaccionAdversa = desReaccionAdversa;
-    }
-
-    public Boolean getIndActivo() {
-        return indActivo;
-    }
-
-    public void setIndActivo(Boolean indActivo) {
-        this.indActivo = indActivo;
-    }
-
-    public String getCveUsuarioAlta() {
-        return cveUsuarioAlta;
-    }
-
-    public void setCveUsuarioAlta(String cveUsuarioAlta) {
-        this.cveUsuarioAlta = cveUsuarioAlta;
-    }
-
-    public String getCveUsuarioBaja() {
-        return cveUsuarioBaja;
-    }
-
-    public void setCveUsuarioBaja(String cveUsuarioBaja) {
-        this.cveUsuarioBaja = cveUsuarioBaja;
-    }
-
-    public String getCveUsuarioModifica() {
-        return cveUsuarioModifica;
-    }
-
-    public void setCveUsuarioModifica(String cveUsuarioModifica) {
-        this.cveUsuarioModifica = cveUsuarioModifica;
-    }
-    public Date getStpModifica() {
-        return stpModifica;
-    }
-
-    public void setStpModifica(Date stpModifica) {
-        this.stpModifica = stpModifica;
-    }
-
-    public Date getStpBaja() {
-        return stpBaja;
-    }
-
-    public void setStpBaja(Date stpBaja) {
-        this.stpBaja = stpBaja;
-    }
-
-    public Date getStpAlta() {
-        return stpAlta;
-    }
-
-    public void setStpAlta(Date stpAlta) {
-        this.stpAlta = stpAlta;
-    }
-
 }

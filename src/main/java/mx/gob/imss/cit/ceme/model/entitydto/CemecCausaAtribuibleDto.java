@@ -3,7 +3,6 @@ package mx.gob.imss.cit.ceme.model.entitydto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import mx.gob.imss.cit.ceme.persistence.CemecCausaAtribuible;
 
 import java.io.Serializable;
 import java.util.Date;

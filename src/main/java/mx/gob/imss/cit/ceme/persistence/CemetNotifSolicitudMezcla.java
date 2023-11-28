@@ -13,22 +13,31 @@ import java.util.Date;
 @Setter
 @ToString
 @Entity
-@Table(name = "CEMEC_DELEGACION")
-public class CemecDelegacion implements Serializable {
-    private static final long serialVersionUID = -3085207890228877884L;
+@Table(name = "CEMET_NOTIF_SOLICITUD_MEZCLA")
+public class CemetNotifSolicitudMezcla implements Serializable {
+    private static final long serialVersionUID = 3054742077514507310L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_DELEGACION", nullable = false)
+    @Column(name = "ID_NOTIF_SOLICITUD_MEZCLA", nullable = false)
     private Integer id;
 
-    @Column(name = "DES_DELEGACION", nullable = false, length = 100)
-    private String desDelegacion;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ID_SOLICITUD_MEZCLA", nullable = false)
+    @ToString.Exclude
+    private CemetSolicitudMezcla idSolicitudMezcla;
 
-    @Column(name = "REF_ABREVIACION", length = 3)
-    private String refAbreviacion;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ID_USUARIO", nullable = false)
+    @ToString.Exclude
+    private CemetUsuario idUsuario;
 
-    @Column(name = "CVE_PRESUPUESTO_DELEGACION")
-    private Integer cvePresupuestoDelegacion;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ID_PLANTILLA_NOTIF", nullable = false)
+    @ToString.Exclude
+    private CemecPlantillaNotif idPlantillaNotif;
+
+    @Column(name = "IND_NOTIF_LEIDA")
+    private Boolean indNotifLeida;
 
     @Column(name = "IND_ACTIVO")
     private Boolean indActivo;
@@ -50,5 +59,4 @@ public class CemecDelegacion implements Serializable {
 
     @Column(name = "STP_MODIFICA", columnDefinition = "timestamp(6)")
     private Date stpModifica;
-
 }

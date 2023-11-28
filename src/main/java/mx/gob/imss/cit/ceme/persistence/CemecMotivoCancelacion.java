@@ -1,14 +1,21 @@
 package mx.gob.imss.cit.ceme.persistence;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.Date;
 
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "CEMEC_MOTIVO_CANCELACION")
 public class CemecMotivoCancelacion implements Serializable {
-    private static final long serialVersionUID = -5772475742153342235L;
+    private static final long serialVersionUID = 4209553780377894011L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_MOTIVO_CANCELACION", nullable = false)
@@ -28,62 +35,13 @@ public class CemecMotivoCancelacion implements Serializable {
 
     @Column(name = "CVE_USUARIO_MODIFICA", length = 60)
     private String cveUsuarioModifica;
-    
-	@Column(name = "STP_ALTA", nullable = false)
-	private Date stpAlta;
-	
-	@Column(name = "STP_MODIFICA")
-	private Date stpModifica;
-	
-	@Column(name = "STP_BAJA")
-	private Date stpBaja;
 
-    public Integer getId() {
-        return id;
-    }
+    @Column(name = "STP_ALTA", columnDefinition = "timestamp(6) not null")
+    private Date stpAlta;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    @Column(name = "STP_BAJA", columnDefinition = "timestamp(6)")
+    private Date stpBaja;
 
-    public String getDesMotivoCancelacion() {
-        return desMotivoCancelacion;
-    }
-
-    public void setDesMotivoCancelacion(String desMotivoCancelacion) {
-        this.desMotivoCancelacion = desMotivoCancelacion;
-    }
-
-    public Boolean getIndActivo() {
-        return indActivo;
-    }
-
-    public void setIndActivo(Boolean indActivo) {
-        this.indActivo = indActivo;
-    }
-
-    public String getCveUsuarioAlta() {
-        return cveUsuarioAlta;
-    }
-
-    public void setCveUsuarioAlta(String cveUsuarioAlta) {
-        this.cveUsuarioAlta = cveUsuarioAlta;
-    }
-
-    public String getCveUsuarioBaja() {
-        return cveUsuarioBaja;
-    }
-
-    public void setCveUsuarioBaja(String cveUsuarioBaja) {
-        this.cveUsuarioBaja = cveUsuarioBaja;
-    }
-
-    public String getCveUsuarioModifica() {
-        return cveUsuarioModifica;
-    }
-
-    public void setCveUsuarioModifica(String cveUsuarioModifica) {
-        this.cveUsuarioModifica = cveUsuarioModifica;
-    }
-
+    @Column(name = "STP_MODIFICA", columnDefinition = "timestamp(6)")
+    private Date stpModifica;
 }

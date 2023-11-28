@@ -13,22 +13,25 @@ import java.util.Date;
 @Setter
 @ToString
 @Entity
-@Table(name = "CEMEC_DELEGACION")
-public class CemecDelegacion implements Serializable {
-    private static final long serialVersionUID = -3085207890228877884L;
+@Table(name = "CEMEC_ESTATUS_SOLICITUD")
+public class CemecEstatusSolicitud implements Serializable {
+    private static final long serialVersionUID = 4573238720622636305L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_DELEGACION", nullable = false)
+    @Column(name = "ID_ESTATUS_SOLICITUD", nullable = false)
     private Integer id;
 
-    @Column(name = "DES_DELEGACION", nullable = false, length = 100)
-    private String desDelegacion;
+    @Column(name = "DES_ESTATUS_SOLICITUD", nullable = false, length = 50)
+    private String desEstatusSolicitud;
 
-    @Column(name = "REF_ABREVIACION", length = 3)
-    private String refAbreviacion;
+    @Column(name = "IND_RECHAZO")
+    private Boolean indRechazo;
 
-    @Column(name = "CVE_PRESUPUESTO_DELEGACION")
-    private Integer cvePresupuestoDelegacion;
+    @Column(name = "REF_MOTIVO_RECHAZO", length = 250)
+    private String refMotivoRechazo;
+
+    @Column(name = "REF_OBSERVACIONES", length = 250)
+    private String refObservaciones;
 
     @Column(name = "IND_ACTIVO")
     private Boolean indActivo;
